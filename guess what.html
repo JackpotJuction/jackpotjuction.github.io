@@ -1,0 +1,206 @@
++<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jackpot Junction - Experience True Luxury</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(to right, purple, red);
+            color: white;
+            position: relative;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header-container {
+            background-color: #333;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .header {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .sub-header {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        .slot-machine {
+            font-size: 48px;
+            background-color: #212121;
+            color: yellow;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 20px 40px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            font-size: 24px;
+            margin: 0 auto;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .games-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .games-list li {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            background-color: #333;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        .background-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: url('path/to/your/background/image.jpg') repeat;
+            opacity: 0.2;
+            animation: backgroundAnimation 20s infinite linear;
+        }
+
+        @keyframes backgroundAnimation {
+            from {
+                transform: translate(0, 0);
+            }
+            to {
+                transform: translate(-100%, -100%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-effect"></div>
+    <header class="header-container">
+        <div class="container">
+            <h1 class="header">Jackpot Junction</h1>
+            <p class="sub-header">Experience True Luxury</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="slot-machine" id="slotMachine">00</div>
+            <button class="button" id="spinButton" onclick="spin()">Spin</button>
+        </div>
+
+        <div class="container">
+            <h2>Games Available:</h2>
+             <ul class="games-list">
+                <li><a href="https://milkywayapp.xyz/" target="_blank" style="color: #FFD700;"><strong>Milkeyway</strong></a></li>
+                <li><a href="https://orionstarsonline.com/" target="_blank" style="color: #FF4500;"><strong>Orinstar</strong></a></li>
+                <li><a href="https://firekirin.com/index.html" target="_blank" style="color: #FF6347;"><strong>Firekrin</strong></a></li>
+                <li><a href="https://gamevault999.com/" target="_blank" style="color: #FFD700;"><strong>Gamevault</strong></a></li>
+                <li><a href="https://m.lasvegassweeps.com" target="_blank" style="color: #FF4500;"><strong>Vegassweeps</strong></a></li>
+                <li><a href="http://www.juwa777.com/" target="_blank" style="color: #FF6347;"><strong>Juwa</strong></a></li>
+                <li><a href="moolah" target="_blank" style="color: #FFD700;"><strong>Moolah</strong></a></li>
+                <li><a href="https://www.vblink777.club/" target="_blank" style="color: #FF4500;"><strong>Vblink</strong></a></li>
+            </ul>
+        </div>
+
+        <div class="container">
+            <button class="button" id="playButton" onclick="openFacebook()">Get Started</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="links">
+                <a href="https://www.facebook.com/profile.php?id=61550062054004" target="_blank">Facebook Page</a> |
+                <a href="https://www.facebook.com/lock.key.1656" target="_blank">Profile</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function spin() {
+            // Check if the user has already spun the slot machine
+            if (localStorage.getItem('spun')) {
+                alert('You have already spun the slot machine!');
+                return;
+            }
+
+            let randomNumber = Math.floor(Math.random() * 60) + 1;
+            const slotMachine = document.getElementById('slotMachine');
+            const spinButton = document.getElementById('spinButton');
+            const maxIterations = 30;
+            const delay = 100;
+            spinButton.disabled = true;
+            for (let i = 0; i < maxIterations; i++) {
+                setTimeout(() => {
+                    let currentNumber = i % 60 + 1;
+                    slotMachine.innerText = currentNumber < 10 ? '0' + currentNumber : currentNumber;
+                }, i * delay);
+            }
+            setTimeout(() => {
+                slotMachine.innerText = randomNumber < 10 ? '0' + randomNumber : randomNumber;
+                spinButton.disabled = false;
+                // Set a flag in localStorage indicating that the user has spun the slot machine
+                localStorage.setItem('spun', 'true');
+            }, maxIterations * delay);
+        }
+
+        function openFacebook() {
+            window.open("https://www.facebook.com/lock.key.1656", "_blank");
+        }
+    </script>
+</body>
+
+</html>
